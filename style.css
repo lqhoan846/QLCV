@@ -1,0 +1,257 @@
+:root {
+    --primary: #a8d8ea;
+    --secondary: #aa96da;
+    --accent: #fcbad3;
+    --bg: #fce38a;
+    --white: rgba(255, 255, 255, 0.9);
+    --text: #333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #a8d8ea, #fcbad3);
+    height: 100vh;
+    overflow: hidden; /* Cố định màn hình */
+}
+
+/* Page Transitions */
+.page {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    padding: 20px;
+}
+
+.page.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Landing Page */
+.glass-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    margin-bottom: 30px;
+    color: #444;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#generated-link {
+    padding: 12px;
+    border-radius: 15px;
+    border: 2px solid var(--primary);
+    width: 300px;
+}
+
+.btn-main {
+    background: var(--secondary);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.btn-main:active { transform: scale(0.9); }
+
+/* Dashboard Layout */
+#dashboard-page {
+    display: none; /* Sẽ hiện bằng JS */
+    padding: 10px;
+    flex-direction: column;
+}
+
+@media (orientation: portrait) {
+    body { transform: rotate(90deg); } /* Force horizontal on mobile if needed */
+}
+
+.ai-header {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ai-input-wrapper {
+    width: 70%;
+    display: flex;
+    background: white;
+    padding: 5px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+#ai-task-input {
+    flex: 1;
+    border: none;
+    padding: 10px 20px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.btn-add-task {
+    background: var(--secondary);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+/* Calendar Grid */
+.calendar-container {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 20px;
+    height: 75vh;
+    margin-top: 10px;
+}
+
+.week-section {
+    background: rgba(255,255,255,0.5);
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title {
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.day-column {
+    background: white;
+    border-radius: 15px;
+    border: 2px solid #eee;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    position: relative;
+    overflow-y: auto;
+}
+
+.day-header {
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.8rem;
+}
+
+.day-header strong { display: block; color: var(--secondary); }
+
+/* Task Item */
+.task-card {
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: 0.75rem;
+    color: white;
+    cursor: pointer;
+    animation: fadeIn 0.3s ease;
+    position: relative;
+}
+
+/* AI Chat Box */
+.ai-chat-box {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ai-bubble {
+    background: #0084ff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+/* Footer */
+.dashboard-footer {
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-footer {
+    background: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 15px;
+    margin-right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 25px;
+    width: 400px;
+    text-align: center;
+}
+
+/* Icon bay bay animation */
+@keyframes flyUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+}
+
+.flying-icon {
+    position: absolute;
+    pointer-events: none;
+    animation: flyUp 0.8s forwards;
+    z-index: 9999;
+}
